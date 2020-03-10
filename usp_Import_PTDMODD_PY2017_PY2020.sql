@@ -12,7 +12,7 @@ BEGIN
 Truncate Table tbl_PTDMODD_In
 
 Declare @BulkCmd As nvarChar(4000)
-Set		@BulkCmd = "BULK INSERT PTDMODDIn FROM '"+@path+@PTDMODDfilename+"' WITH (ROWTERMINATOR = '0x0a')"
+Set		@BulkCmd = "BULK INSERT tbl_PTDMODD_In FROM '"+@path+@PTDMODDfilename+"' WITH (ROWTERMINATOR = '0x0a')"
 Exec	(@BulkCmd)
 
 Declare @DateImported As DateTime
@@ -29,7 +29,7 @@ Select	SubString([Column 0],001,001) As	RecordTypeCode		-- 1
 From	tbl_PTDMODD_In
 Where	SubString([Column 0],01,01) = '1'
 
-Insert	Into tbl_PTDMODD_PY2017_PY2020_record
+Insert	Into tbl_PTDMODD_PY2017_PY2020_Record
 Select	SubString([Column 0],001,001) As	RecordTypeCode		-- 2,4 or 5
 ,		SubString([Column 0],002,011) As	BeneficiaryIdentifier
 ,		SubString([Column 0],013,001) As	Filler01
