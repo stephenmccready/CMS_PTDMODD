@@ -12,7 +12,7 @@ BEGIN
 Truncate Table tbl_PTDMODD_In
 
 Declare @BulkCmd As nvarChar(4000)
-Set		@BulkCmd = "BULK INSERT tbl_PTDMODD_In FROM '"+@path+@PTDMODDfilename+"' WITH (ROWTERMINATOR = '0x0a')"
+Set		@BulkCmd = "BULK INSERT tbl_PTDMODD_In FROM '"+@path+@ImportFileName+"' WITH (ROWTERMINATOR = '0x0a')"
 Exec	(@BulkCmd)
 
 Declare @DateImported As DateTime
